@@ -19,13 +19,13 @@ handlers:
   static_dir: bootstrap
   
 - url: /tasks/status
-  script: status.app
+  script: handlers/status.py
   
 - url: /tasks/flight_radar
-  script: status.app
+  script: handlers/status.py
   
 - url: /.*
-  script: main.app
+  script: handlers/main.py
 
 libraries:
 - name: webapp2
