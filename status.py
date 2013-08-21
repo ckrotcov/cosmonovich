@@ -2,21 +2,10 @@ import os
 import webapp2
 import urllib2
 import re
-from google.appengine.ext import db
+from models import *
 import random
 
-class DataServer(db.Model):
-	url = db.StringProperty(required=True)
 
-class FlightData(db.Model):
-	callsign = db.StringProperty(required=True)
-	pilot_id = db.StringProperty(required=True)
-	pilot_name = db.StringProperty(required=False)
-	client_type = db.StringProperty(required=False)
-	frequency = db.StringProperty(required=False)
-	lat = db.StringProperty()
-	lon = db.StringProperty()
-	alt = db.StringProperty()
 
 			
 class StatusHandler(webapp2.RequestHandler):
@@ -54,6 +43,8 @@ class GetPilotData(webapp2.RequestHandler):
 			result = urllib2.urlopen(url_object.url)
 			data = result.read()
 			
+			for flight in FlightData.all():
+				flight.delete()
 			
 			out = data.split("!CLIENTS:\r\n")
 			data_lines = out[1].split("!SERVERS:\r\n")
@@ -83,6 +74,8 @@ class GetPilotData(webapp2.RequestHandler):
 						flight_data.lat=pilot_data[5]
 						flight_data.lon=pilot_data[6]
 						flight_data.alt=pilot_data[7]
+						flight_data.dep_airport = pilot_data[11]
+						flight_data.dest_airport = pilot_data[13]
 						flight_data.put()
 
 					
