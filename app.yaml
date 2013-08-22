@@ -15,6 +15,9 @@ handlers:
 - url: /js
   static_dir: js
 
+- url: /assets
+  static_dir: assets
+
 - url: /bootstrap
   static_dir: bootstrap
   
@@ -23,7 +26,13 @@ handlers:
   
 - url: /tasks/flight_radar
   script: handlers/status.py
-  
+
+- url: /joy
+  static_dir: joy
+
+- url: /game
+  script: handlers/game.py
+    
 - url: /.*
   script: handlers/main.py
 
