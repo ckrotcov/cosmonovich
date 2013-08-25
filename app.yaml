@@ -27,14 +27,14 @@ handlers:
 - url: /tasks/flight_radar
   script: handlers/status.py
 
-- url: /joy
+- url: /joy/.*
   static_dir: joy
 
 - url: /game
-  script: handlers/game.py
+  script: handlers.game.app
     
 - url: /.*
-  script: handlers/main.py
+  script: handlers.main.app
 
 libraries:
 - name: webapp2
