@@ -16,15 +16,15 @@ var Game = {
 			      this.position.x += this.speed * this.hDir * Joy.deltaTime;
 			      this.position.y += this.speed * this.vDir * Joy.deltaTime;
 			      
-			      if ((this.position.x + this.width/2) > Game.engine.width) {
+			      if ((this.position.x + this.width/2) >= Game.engine.width) {
 			        this.hDir = this.hDir-1;
-			      } else if (this.position.x < 0) {
+			      } else if (this.position.x - this.width/2 <= 0) {
 			        this.hDir = this.hDir+1;
 			      }
 			
-			      if ((this.position.y + this.height/2) > Game.engine.height) {
+			      if ((this.position.y + this.height/2) >= Game.engine.height) {
 			        this.vDir = this.vDir-1;
-			      } else if (this.position.y < 0) {
+			      } else if (this.position.y - this.height/2 <= 0) {
 			        this.vDir = this.vDir+1;
 			      }
 			    }
@@ -43,10 +43,11 @@ var Game = {
 		  	  this.locked = true;
 			  var ballPosition = scene.ball.position.clone();
 			  
-			  //console.log(ballPosition);
-			  var direction = ballPosition.subtract(new Joy.Vector2d(e.x, e.y)).normalize();
-			  scene.ball.hDir = direction.y;
-			  scene.ball.vDir = direction.x;
+			  console.log(e);
+			  var direction = new Joy.Vector2d(e.x, e.y).subtract(ballPosition).normalize();
+			  console.log(direction);
+			  scene.ball.hDir = direction.x;
+			  scene.ball.vDir = direction.y;
 			  scene.ball.speed = 2
 			  scene.ball.behave('BouncyBehaviour');
 			  			  /*
