@@ -27,8 +27,8 @@ handlers:
 - url: /tasks/flight_radar
   script: handlers/status.py
 
-- url: /joy/.*
-  static_dir: joy
+- url: /joy
+  static_dir: joy.js
 
 - url: /game
   script: handlers.game.app
