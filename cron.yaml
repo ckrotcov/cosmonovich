@@ -1,8 +1,1 @@
 cron:
-- description: "hourly servers update"
-  url: /tasks/status
-  schedule: every 1 hours
-
-- description: "Flight Radar"
-  url: /tasks/flight_radar
-  schedule: every 1 hours
