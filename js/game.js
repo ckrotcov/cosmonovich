@@ -3,7 +3,7 @@ var Game = {
 	  
   
 	  var c = document.getElementById("joy");
-	
+	  c.webkitRequestFullScreen();
 	
 	  this.engine = new Joy.Engine({
 	    canvas: c,
@@ -82,19 +82,3 @@ var Game = {
   },
  
 };
-
-
-
-Joy.Behaviour.define('GameMouseBehaviour', {
-    INIT: function () {
-      // Add button behaviour, to handle MOUSE_OVER and MOUSE_OUT events
-      this.behave(Joy.Behaviour.Button);
-    },
-
-    CLICK: function(e) {
-      new Joy.Tween(this.position).to({
-        x: Math.random() * (engine.width - this.width),
-        y: Math.random() * (engine.height - this.height)
-      }).easing(Joy.TweenManager.Easing.Sinusoidal.InOut).start();
-    }
-  });
