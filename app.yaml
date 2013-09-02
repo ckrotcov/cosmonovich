@@ -32,7 +32,10 @@ handlers:
 
 - url: /game
   script: handlers.game.app
-    
+
+- url: /profile
+  script: handlers.game.app  
+ 
 - url: /.*
   script: handlers.main.app
 
